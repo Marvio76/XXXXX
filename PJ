@@ -1,0 +1,44 @@
+package Refatorando_02;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PJ extends Funcionario {
+    private String projeto;
+    private List<Double> valoresProjetos;
+
+    public PJ(String nome, boolean ativo, String projetoInicial, double valorInicial) {
+        super(nome, ativo);
+        this.projeto = projetoInicial;
+        this.valoresProjetos = new ArrayList<>();
+        this.valoresProjetos.add(valorInicial);
+    }
+
+    // Sobrecarga - Registrar um único projeto
+    public void registrarProjeto(String projeto, double valor) {
+        this.projeto = projeto;
+        this.valoresProjetos.add(valor);
+    }
+
+    // Sobrecarga - Registrar múltiplos projetos
+    public void registrarProjeto(List<Double> valores) {
+        this.valoresProjetos.addAll(valores);
+    }
+
+    @Override
+    public double calcularSalario() {
+        double total = 0.0;
+        for (double valor : valoresProjetos) {
+            total += valor;
+        }
+        return total;
+    }
+
+    public String getProjeto() {
+        return projeto;
+    }
+
+    public List<Double> getValoresProjetos() {
+        return valoresProjetos;
+    }
+}
